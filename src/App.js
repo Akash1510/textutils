@@ -1,24 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import React, { useState } from "react";
+import "./App.css";
+import About from "./Components/About";
+import Navbar from "./Components/Navbar.js";
+import TextForms from "./Components/TextForms";
+import Alert from "./Components/Alert";
+
+//using the React Routers 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+ 
+
+} from "react-router-dom";
 
 function App() {
+  const [mode, setmode] = useState("light");
+  //whether the dark mode is Enable or not
+  const [alert, setalert] = useState(null);
+
+  const showalert = (message, type) => {
+    setalert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setalert(null)
+      
+    }, 1500);
+  };
+
+  const togglemode = () => {
+    if (mode === "light") {
+      setmode("dark");
+      document.body.style.backgroundColor = "#042743";
+      showalert(" Dark mode Is Enabled", "success");
+      document.title='Textutils-Dark Mode';
+    } else {
+      setmode("light");
+      document.body.style.backgroundColor = "white";
+      showalert(" Light mode Is Enabled", "success");
+      document.title='Textutils-Light Mode';
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+    <Router>
+      <Navbar
+        title="AkashTech1"
+        abouttext="AboutUs"
+        mode={mode}
+        togglemode={togglemode}
+        />
+
+
+      {/* <Navbar title="Akash Tech" About="About us" mode={mode} togglemode={togglemode} /> */}
+      <Alert alert={alert} />
+      <div className="container my-3">
+        <Routes>
+          <Route exact path="/"
+          element={<TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode}/>}/>
+          
+          <Route exact path="/about"
+          element ={<About/>}/>
+      
+     </Routes>
+      </div>
+      
+    </Router>
+      
+        
+        {/* <TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode} />
+        <About /> */}
+    </>
   );
 }
 
