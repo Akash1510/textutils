@@ -56,6 +56,7 @@ function App() {
         />
 
 
+
       {/* <Navbar title="Akash Tech" About="About us" mode={mode} togglemode={togglemode} /> */}
       <Alert alert={alert} />
       <div className="container my-3">
@@ -64,7 +65,7 @@ function App() {
           element={<TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode}/>}/>
           
           <Route exact path="/about"
-          element ={<About/>}/>
+          element ={<About mode={mode}/>}/>
       
      </Routes>
       </div>
@@ -72,6 +73,7 @@ function App() {
     </Router>
       
         
+    
         {/* <TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode} />
         <About /> */}
     </>
@@ -79,3 +81,16 @@ function App() {
 }
 
 export default App;
+
+
+// for deployon git hub
+// npm run build
+// run  npm i --save gh-pages
+// run npm run deploy
+
+// add above name in package.json
+// "homepage": "https://Akash1510.github.io/Text_Converter_App/",
+
+// Add in the Scripts in package.json
+   // "predeploy": "npm run build",
+    // "deploy": "gh-pages -d build",
