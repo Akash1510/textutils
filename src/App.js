@@ -61,11 +61,10 @@ function App() {
       <Alert alert={alert} />
       <div className="container my-3">
         <Routes>
-          <Route exact path="/"
-          element={<TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode}/>}/>
+          <Route exact path="/"element={<TextForms showalert={showalert} heading="Lower to uppercase Converter" my-1 mode={mode}/>}/>
           
           <Route exact path="/about"
-          element ={<About mode={mode}/>}/>
+  element ={<About mode={mode}/>}/>
       
      </Routes>
       </div>
